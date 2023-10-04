@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nicegui-hello
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: nicegui-hello
+  template:
+    metadata:
+      labels:
+        app: nicegui-hello
+    spec:
+      containers:
+        - name: podinfod
+          image: <harbor repo>:25dcf189-1695069173 # {"$imagepolicy": "flux-system:nicegui-hello"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+

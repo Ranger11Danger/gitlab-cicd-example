@@ -1,0 +1,10 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: nicegui-hello
+  namespace: flux-system
+spec:
+  image: <harbor repo>/library/nicegui-test
+  interval: 1m0s
+

@@ -1,0 +1,17 @@
+default:
+  image: docker
+stages:
+  - build
+  - deploy
+
+build-job:    
+  environment: 
+    name: production
+    url: http://<whatever your app url is going to be>
+  stage: build
+  script:
+    - date=$(date +%s)
+    - docker build -t <harbor repo>:$CI_COMMIT_SHORT_SHA-$date .
+    - docker login <harbor repo> -u $HARBOR_USER -p $HARBOR_C2_SECRET
+    - docker push <harbor repo>:$CI_COMMIT_SHORT_SHA-$date
+

@@ -1,0 +1,17 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: nicegui-hello 
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: nicegui-hello
+  filterTags:
+    pattern: '.*-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
+
+
